@@ -1,0 +1,3 @@
+Schedule and Deliverables:
+	- set up asteroid class with required fields, constructors, and methods -- Fri 02/24 by 10pm (estimate: 1 hr)
+	- give asteroids ability to fall towards the bottom-center of the screen (where the ship will be) -- Mon 02/27 by 10pm (estimate: 4 hrs)
