@@ -1,0 +1,5 @@
+Schedule and deliverable:
+	-create sample asteroid -- Mon 02/24 by 5 pm (estimate: 2 hrs)
+	-create sample background image -- Tuesday 02/25 by 5 pm (estimate: 3 hrs)
+	-create sample launch page -- Wednesday 02/26 by 5 pm (estimate: 4 hrs)
+	-create backend that detects wi-fi connection -- Thursday 02/27 by 5 pm (estimate: 2 hrs)

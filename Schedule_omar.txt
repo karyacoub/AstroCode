@@ -1,0 +1,3 @@
+Schedule and deliverable:
+    - create question class -- Friday 02/24 by 5pm (estimate: 2hr)
+    - create sprite for ship -- Monday 2/27 by 5pm (estimate: 2hr)
