@@ -11,7 +11,10 @@ public class Asteroid
 		this.speed = speed;
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb53ba7fa52b16b86b76dde95ba07405c30cd101
 	public double getSize()
 	{
 		return size;
@@ -20,4 +23,8 @@ public class Asteroid
 	{
 		return speed;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bb53ba7fa52b16b86b76dde95ba07405c30cd101
