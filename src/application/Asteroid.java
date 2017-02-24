@@ -11,6 +11,7 @@ public class Asteroid
 		this.speed = speed;
 	}
 	
+
 	public double getSize()
 	{
 		return size;
