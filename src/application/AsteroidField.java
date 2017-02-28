@@ -4,7 +4,8 @@
 package application;
 
 import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.LineTo;
@@ -27,16 +28,29 @@ public class AsteroidField extends Parent
 	{
 		ImageView iv = new ImageView(currentAsteroid.getImage());
 		Main.getBorderPane().getChildren().add(iv);
-		
+		double duration = currentAsteroid.getSpeed() * 1000;
 		Path path = new Path();
-		path.getElements().add(new MoveTo(currentAsteroid.getX(), currentAsteroid.getY()));
-		path.getElements().add(new LineTo(Main.getWidth() / 2, Main.getHeight()));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(currentAsteroid.getSpeed() * 1000));
+		
+		path.getElements().add(new MoveTo(currentAsteroid.getX(), currentAsteroid.getY()));
+		path.getElements().add(new LineTo(Main.getWidth() / 2, Main.getHeight() + currentAsteroid.getSize()));
+		
+		pathTransition.setDuration(Duration.millis(duration));
 		pathTransition.setPath(path);
 		pathTransition.setNode(iv);
 		pathTransition.setCycleCount(1);
+		
 		pathTransition.play();
+		
+		pathTransition.setOnFinished(new EventHandler<ActionEvent>()
+				{
+					@Override
+					public void handle(ActionEvent event)
+					{
+						runSimulation();
+					}
+				}
+		);
 		
 		currentAsteroid = new Asteroid();
 	}
