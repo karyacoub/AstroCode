@@ -28,7 +28,7 @@ public class Asteroid
 		int windowWidth = Main.getWidth();
 		int startingXPosition = randInt(0, windowWidth);
 		
-		position = new Point(startingXPosition, 0);
+		position = new Point(startingXPosition, (int)(-size));
 		
 		image = new Image("file:assets/temp_asteroid.png", size, size, false, false);
 	}
@@ -41,7 +41,7 @@ public class Asteroid
 		int windowWidth = Main.getWidth();
 		int startingXPosition = randInt(0, windowWidth);
 		
-		position = new Point(startingXPosition, 0);
+		position = new Point(startingXPosition, (int)(-size));
 		
 		image = new Image("file:assets/temp_asteroid.png", size, size, false, false);
 	}
