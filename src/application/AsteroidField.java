@@ -28,14 +28,13 @@ public class AsteroidField extends Parent
 	{
 		ImageView iv = new ImageView(currentAsteroid.getImage());
 		Main.getBorderPane().getChildren().add(iv);
-		double duration = currentAsteroid.getSpeed() * 1000;
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		
 		path.getElements().add(new MoveTo(currentAsteroid.getX(), currentAsteroid.getY()));
 		path.getElements().add(new LineTo(Main.getWidth() / 2, Main.getHeight() + currentAsteroid.getSize()));
 		
-		pathTransition.setDuration(Duration.millis(duration));
+		pathTransition.setDuration(Duration.millis(currentAsteroid.getSpeed() * 1000));
 		pathTransition.setPath(path);
 		pathTransition.setNode(iv);
 		pathTransition.setCycleCount(1);
@@ -51,7 +50,5 @@ public class AsteroidField extends Parent
 					}
 				}
 		);
-		
-		currentAsteroid = new Asteroid();
 	}
 }
