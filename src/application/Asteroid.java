@@ -19,7 +19,7 @@ public class Asteroid
 	private double speed;
 	private Point position;
 	
-	// constructor to be used if no Internet connection is found
+	// constructors to be used if no Internet connection is found
 	public Asteroid(double size, double speed)
 	{
 		this.size = size;
@@ -46,11 +46,6 @@ public class Asteroid
 		image = new Image("file:assets/temp_asteroid.png", size, size, false, false);
 	}
 	
-	
-	public void moveTowardsShip()
-	{
-		
-	}
 	
 	private int randInt(int lowerBound, int upperBound)
 	{
