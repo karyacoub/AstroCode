@@ -12,7 +12,7 @@ public abstract class Asteroid
 	protected Image sprite;
 	protected Point position;
 	
-	protected int randInt(int lowerBound, int upperBound)
+	int randInt(int lowerBound, int upperBound)
 	{
 		Random rand = new Random();
 		return rand.nextInt(upperBound) + lowerBound;
