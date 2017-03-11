@@ -1,6 +1,5 @@
 package asteroids;
 
-import java.awt.Point;
 import java.util.Random;
 import javafx.scene.image.Image;
 
@@ -10,7 +9,6 @@ public abstract class Asteroid
 	
 	protected double size;
 	protected Image sprite;
-	protected Point position;
 	
 	protected int randInt(int lowerBound, int upperBound)
 	{
@@ -42,9 +40,5 @@ public abstract class Asteroid
 	public Image getSprite()
 	{
 		return sprite;
-	}
-	public Point getPos()
-	{
-		return position;
 	}
 }
