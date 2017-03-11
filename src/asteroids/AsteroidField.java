@@ -6,13 +6,28 @@ public class AsteroidField
 {
 	private final int NUM_TYPES_OF_ASTEROIDS = 3;
 	
-	private AsteroidFactory factory;
+	private AsteroidFactory factory = new AsteroidFactory();
 	private Asteroid curAsteroids[];
 	
 	public AsteroidField()
 	{
-		factory = new AsteroidFactory();
 		curAsteroids = initCurAsteroids();
+	}
+	
+	public void printAsteroidInfo() // for debugging //
+	{
+		System.out.println("** CURRENT ASTEROID INFO **");
+		
+		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
+		{
+			System.out.println("Asteroid " + (i+1) + ":");
+			System.out.println("\t SIZE: " + curAsteroids[i].getSize());
+			System.out.println("\t SPRITE: " + curAsteroids[i].getSprite());
+		}
+	}
+	public Asteroid[] getCurAsteroids()
+	{
+		return curAsteroids;
 	}
 	
 	private Asteroid[] initCurAsteroids()
@@ -43,15 +58,9 @@ public class AsteroidField
 	{
 		return randInt(1, NUM_TYPES_OF_ASTEROIDS);
 	}
-	
-	int randInt(int lowerBound, int upperBound)
+	private int randInt(int lowerBound, int upperBound)
 	{
 		Random rand = new Random();
 		return rand.nextInt(upperBound) + lowerBound;
-	}
-	
-	public Asteroid[] getCurAsteroids()
-	{
-		return curAsteroids;
 	}
 }
