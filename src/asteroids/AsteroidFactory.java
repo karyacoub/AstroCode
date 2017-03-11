@@ -6,9 +6,9 @@ public class AsteroidFactory
 	{
 		asteroidType = asteroidType.toLowerCase();
 		
-		if(!asteroidType.equals("big") || !asteroidType.equals("medium") || !asteroidType.equals("small"))
+		if(!asteroidType.equals("big") && !asteroidType.equals("medium") && !asteroidType.equals("small"))
 		{
-			throw new IllegalArgumentException("Revieved asteroid type does not exist");
+			throw new IllegalArgumentException("Recieved asteroid type does not exist");
 		}
 		else if(asteroidType.equals("big"))
 		{
