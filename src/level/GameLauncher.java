@@ -1,11 +1,8 @@
- 
-/**
- * Manages an instance of Astrocode game
- * 
- * @author (omar) 
- * @version (v1.0)
- */
-public class gameLauncher
+package level;
+
+import asteroids.AsteroidField; 
+
+public class GameLauncher
 {
     AsteroidField asteroidField;
     Level curLevel;
@@ -14,7 +11,7 @@ public class gameLauncher
     /**
      * Constructor for GameLauncher
      */
-    public gameLauncher(/*AsteroidField a,*/ Level l /*, Spaceship s*/)
+    public GameLauncher(/*AsteroidField a,*/ Level l /*, Spaceship s*/)
     {
         //asteroidField = a;
         curLevel = l;
@@ -37,14 +34,14 @@ public class gameLauncher
      System.out.println("Game Over");
     }
     
-    void restart()
+    public void restart()
     {
        System.out.println("Game will Restart");
         
         //this function should restart the game by running startGame()
     }
     
-    boolean testConnection()
+    public boolean testConnection()
     {
         return true;
     }

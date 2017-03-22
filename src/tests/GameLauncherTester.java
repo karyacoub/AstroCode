@@ -1,18 +1,15 @@
+package tests;
 
-/**
- * Write a description of class GameLauncherTester here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class gameLauncherTester
+import level.Level;
+import level.GameLauncher;
+
+public class GameLauncherTester
 {
    public static void main(String args[])
    {
-       
        Level l = new Level();
        
-       gameLauncher g = new gameLauncher(l);
+       GameLauncher g = new GameLauncher(l);
        
        System.out.println("testing startGame");
        g.startGame();

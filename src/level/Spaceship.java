@@ -1,10 +1,7 @@
+package level;
 
-/**
- * the spaceship that will keep track of hp and destroy the asteroids
- * 
- * @omar 
- * @Version 1.0
- */
+import asteroids.Asteroid;
+
 public class Spaceship
 {
     private static final Spaceship INSTANCE = new Spaceship();

@@ -1,4 +1,6 @@
- 
+package tests;
+
+import level.Level;
 
 public class Leveltester
 {

@@ -1,3 +1,5 @@
+package level;
+
 import java.util.Scanner;
 /**
  * Write a description of class inputProcessor here.
@@ -5,7 +7,7 @@ import java.util.Scanner;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class inputProcessor
+public class InputProcessor
 {
     private String input;
     private String answer;
@@ -14,7 +16,7 @@ public class inputProcessor
     /**
      * Constructor for objects of class inputProcessor
      */
-    public inputProcessor()
+    public InputProcessor()
     {
       s = new Scanner(System.in);
         

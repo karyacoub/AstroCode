@@ -1,4 +1,4 @@
-package tests;
+package questions;
 
 import questions.Question;
 import questions.QuestionBank;
