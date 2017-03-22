@@ -9,7 +9,6 @@ import application.MainWindow;
 public abstract class Asteroid 
 {	
 	private final static int NUM_SPRITES = 3;
-	private final static int NUM_POSITIONS = 3;
 	
 	private static int filledPositions = 0;
 	
