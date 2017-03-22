@@ -8,22 +8,13 @@ public class GameLauncher
     Level curLevel;
     Spaceship ship;
 
-    /**
-     * Constructor for GameLauncher
-     */
-    public GameLauncher(/*AsteroidField a,*/ Level l /*, Spaceship s*/)
+    public GameLauncher(AsteroidField a, Level l, Spaceship s)
     {
-        //asteroidField = a;
+        asteroidField = a;
         curLevel = l;
-        //ship = s;
+        ship = s;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
     public void startGame()
     {
       System.out.println("get ready"); 

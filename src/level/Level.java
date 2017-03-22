@@ -1,20 +1,22 @@
 package level;
 
 import asteroids.AsteroidField;
+import questions.QuestionBank;
 
 public class Level
 {
     //private QuestionBank questionBank;
     private AsteroidField asteroidField;
+    private QuestionBank questionBank;
     private int counter;
     private int curLevel;
     
 
 
-    public Level( /*AsteroidField af, QuesetionBank q*/)
+    public Level(AsteroidField af, QuestionBank q)
     {
-        //questionBank = q;
-        //asteroidField = af;
+        questionBank = q;
+        asteroidField = af;
         this.counter = 0;
         this.curLevel = 1;
     }

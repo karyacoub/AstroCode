@@ -1,12 +1,7 @@
 package level;
 
 import java.util.Scanner;
-/**
- * Write a description of class inputProcessor here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class InputProcessor
 {
     private String input;
@@ -22,12 +17,6 @@ public class InputProcessor
         
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
     public String setInput()
     {
         // put your code here

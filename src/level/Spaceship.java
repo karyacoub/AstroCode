@@ -7,9 +7,6 @@ public class Spaceship
     private static final Spaceship INSTANCE = new Spaceship();
     private int Hp;
 
-    /**
-     * Constructor for objects of class Spaceship
-     */
     private Spaceship()
     {
      Hp = 100;
