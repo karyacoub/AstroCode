@@ -2,8 +2,12 @@ package asteroids;
 
 import java.awt.Point;
 import java.util.Random;
+
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import application.MainWindow;
 
 public abstract class Asteroid 
@@ -60,6 +64,13 @@ public abstract class Asteroid
 		iv.setX(position.getX());
 		iv.setY(position.getY());
 		MainWindow.getBorderPane().getChildren().add(iv);
+		
+		int duration = randInt(50000, 100000);
+		
+		RotateTransition rt = new RotateTransition(Duration.millis(duration), iv);
+		rt.setByAngle(1080);
+		rt.setCycleCount(Timeline.INDEFINITE);
+		rt.play();
 	}
 	
 	// getters
