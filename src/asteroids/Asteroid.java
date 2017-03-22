@@ -13,8 +13,8 @@ import application.MainWindow;
 public abstract class Asteroid 
 {	
 	private final static int NUM_SPRITES = 3;
-	private final static int MIN_ROTATION_SPEED = 80000;
-	private final static int MAX_ROTATION_SPEED = 50000;
+	private final static int MIN_ROTATION_DURATION = 50000;
+	private final static int MAX_ROTATION_DURATION = 20000;
 	
 	private static int filledPositions = 0;
 	
@@ -67,7 +67,7 @@ public abstract class Asteroid
 		iv.setY(position.getY());
 		MainWindow.getBorderPane().getChildren().add(iv);
 		
-		int duration = randInt(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED);
+		int duration = randInt(MIN_ROTATION_DURATION, MAX_ROTATION_DURATION);
 		
 		RotateTransition rt = new RotateTransition(Duration.millis(duration), iv);
 		rt.setByAngle(1080);
