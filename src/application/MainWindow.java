@@ -23,6 +23,9 @@ public class MainWindow extends Application
 		{
 			Scene tempScene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 			primaryStage.setScene(tempScene);
+			//root.getChildren().add(new GameLauncher());
+			GameLauncher game = new GameLauncher();
+			game.startGame();
 			primaryStage.show();
 		} 
 		catch(Exception e) 

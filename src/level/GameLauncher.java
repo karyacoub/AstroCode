@@ -1,33 +1,33 @@
 package level;
 
-import asteroids.AsteroidField; 
+import asteroids.AsteroidField;
+import javafx.scene.Parent; 
 
-public class GameLauncher
+public class GameLauncher extends Parent
 {
-    AsteroidField asteroidField;
-    Level curLevel;
-    Spaceship ship;
+    private AsteroidField asteroidField = new AsteroidField();
+    private Spaceship ship = Spaceship.getInstance();
+    private Level curLevel;
 
-    public GameLauncher(AsteroidField a, Level l, Spaceship s)
+    public GameLauncher()
     {
-        asteroidField = a;
-        curLevel = l;
-        ship = s;
+    	super();
     }
 
     public void startGame()
     {
-      System.out.println("get ready"); 
+    	System.out.println("get ready"); 
+    	asteroidField.displayAllAsteroids();
     }
     
     public void gameOver()
     {
-     System.out.println("Game Over");
+    	System.out.println("Game Over");
     }
     
     public void restart()
     {
-       System.out.println("Game will Restart");
+    	System.out.println("Game will Restart");
         
         //this function should restart the game by running startGame()
     }

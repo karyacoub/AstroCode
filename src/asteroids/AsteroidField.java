@@ -14,6 +14,14 @@ public class AsteroidField
 		curAsteroids = initCurAsteroids();
 	}
 	
+	public void displayAllAsteroids()
+	{
+		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
+		{
+			curAsteroids[i].displayAsteroid();
+		}
+	}
+	
 	public void printAsteroidInfo() // for debugging //
 	{
 		System.out.println("** CURRENT ASTEROID INFO **");

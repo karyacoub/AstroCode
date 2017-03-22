@@ -14,7 +14,7 @@ public class GameLauncherTester
        AsteroidField a = new AsteroidField();
        Spaceship ship = Spaceship.getInstance();
        
-       GameLauncher g = new GameLauncher(a, l, ship);
+       GameLauncher g = new GameLauncher();
        
        System.out.println("testing startGame");
        g.startGame();
