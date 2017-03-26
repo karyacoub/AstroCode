@@ -14,6 +14,7 @@ public class AsteroidField
 		curAsteroids = initCurAsteroids();
 	}
 	
+	// display all current asteroids on screen
 	public void display()
 	{
 		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
