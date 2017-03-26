@@ -1,7 +1,9 @@
-package level;
+package application;
 
 import asteroids.AsteroidField;
-import javafx.scene.Parent; 
+import javafx.scene.Parent;
+import level.Level;
+import level.Spaceship; 
 
 public class GameLauncher extends Parent
 {

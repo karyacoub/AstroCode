@@ -1,9 +1,9 @@
 package tests;
 
 import level.Level;
-import level.GameLauncher;
 import level.Spaceship;
 import questions.QuestionBank;
+import application.GameLauncher;
 import asteroids.AsteroidField;
 
 public class GameLauncherTester
