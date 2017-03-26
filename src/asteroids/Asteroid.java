@@ -12,7 +12,7 @@ import application.MainWindow;
 
 public abstract class Asteroid 
 {	
-	private final static int NUM_SPRITES = 3;
+	private final static int NUM_ASTEROIDS_ON_SCREEN = 3;
 	private final static int MIN_ROTATION_DURATION = 50000;
 	private final static int MAX_ROTATION_DURATION = 20000;
 	
@@ -31,7 +31,7 @@ public abstract class Asteroid
 	// chooses one of the sprites in the assets folder
 	protected Image chooseSprite()
 	{
-		int rand = randInt(1, NUM_SPRITES);
+		int rand = randInt(1, NUM_ASTEROIDS_ON_SCREEN);
 		
 		if(rand == 1)
 		{
