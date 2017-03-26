@@ -16,8 +16,8 @@ public class GameLauncher extends Parent
 
     public void startGame()
     {
-    	System.out.println("get ready"); 
-    	asteroidField.displayAllAsteroids();
+    	System.out.println("get ready");
+    	asteroidField.display();
     }
     
     public void gameOver()
