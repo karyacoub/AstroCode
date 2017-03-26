@@ -1,16 +1,32 @@
 package level;
 
+import application.MainWindow;
 import asteroids.Asteroid;
+import javafx.animation.PathTransition;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
+
+import java.awt.Point;
 
 public class Spaceship
 {
     private static final Spaceship INSTANCE = new Spaceship();
-    private int Hp;
+    private static final double SIZE = 80;
+    private static final int ANIMATION_DURATION = 1000;
+    private static final Point OFF_SCREEN_POSITION = new Point(MainWindow.getWidth() / 2, MainWindow.getHeight() + 200);
+    private static final Point ON_SCREEN_POSITION = new Point(MainWindow.getWidth() / 2, MainWindow.getHeight() - 200);
+    
+    private int hp;
+    private Image sprite;
 
     private Spaceship()
     {
-     Hp = 100;
-        
+    	hp = 100;
+    	sprite = new Image("file:assets/temp_ship.png", SIZE, SIZE, false, false);
     }
 
     /**
@@ -43,8 +59,8 @@ public class Spaceship
      */
     public void decreaseHp()
     {
-      Hp = Hp - 25;
-      System.out.println("Damage taken");
+	      hp = hp - 25;
+	      System.out.println("Damage taken");
     }
     /**
      * increases the hp of the ship - for now by 25 later will be based on other factors(power ups etc.)
@@ -54,15 +70,36 @@ public class Spaceship
      */
     public void replenishHp()
     {
-     this.Hp = Hp + 25;
+    	hp = hp + 25;
     }
     public int checkHp()
     {
-        return this.Hp;
+        return hp;
     }
     
-    public static synchronized Spaceship getInstance(){
-            return INSTANCE; 
+    public static synchronized Spaceship getInstance()
+    {
+        return INSTANCE; 
+    }
+    
+    public void display()
+    {
+    	// add ship to main window
+    	ImageView iv = new ImageView(sprite);
+    	iv.setX(OFF_SCREEN_POSITION.getX());
+    	iv.setY(OFF_SCREEN_POSITION.getY());
+    	MainWindow.getBorderPane().getChildren().add(iv);
+    	
+    	// allow ship to fly up from under window
+    	Path path = new Path();
+    	path.getElements().add(new MoveTo(iv.getX(), iv.getY()));
+    	path.getElements().add(new LineTo(ON_SCREEN_POSITION.getX(), ON_SCREEN_POSITION.getY()));
+    	PathTransition pathTransition = new PathTransition();
+    	pathTransition.setNode(iv);
+    	pathTransition.setPath(path);
+    	pathTransition.setDuration(Duration.millis(ANIMATION_DURATION));
+    	
+    	pathTransition.play();
     }
     
 }

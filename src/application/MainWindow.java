@@ -28,7 +28,7 @@ public class MainWindow extends Application
 			game.startGame();
 			
 			primaryStage.show();
-		} 
+		}
 		catch(Exception e) 
 		{
 			e.printStackTrace();

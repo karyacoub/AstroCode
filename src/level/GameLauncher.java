@@ -18,6 +18,7 @@ public class GameLauncher extends Parent
     {
     	System.out.println("get ready");
     	asteroidField.display();
+    	ship.display();
     }
     
     public void gameOver()
