@@ -1,15 +1,9 @@
 package questions;
 
-public class Question
+public abstract class Question
 {
 	protected String question;
 	protected String answer;
-	
-	public Question()
-	{
-		question = "Sample Question";
-		answer = "Sample Answer";
-	}
 	
 	public String getQuestion()
 	{

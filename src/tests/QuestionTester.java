@@ -1,7 +1,6 @@
-package questions;
+package tests;
 
-import questions.Question;
-import questions.QuestionBank;
+import questions.*;
 
 public class QuestionTester
 {
@@ -9,7 +8,7 @@ public class QuestionTester
 	{
 		QuestionBank bank = new QuestionBank();
 		
-		Question q = new Question();
+		Question q = new Level1Question1();
 		
 		Question curQ = bank.factory.createQuestion(q);
 		
