@@ -2,16 +2,31 @@ package questions;
 
 public class QuestionBank
 {
-	public QuestionFactory factory;
+	public QuestionFactory factory = new QuestionFactory();
 	Question curQuestion;
 	
-	void setCurQuestion(Question q)
+	public QuestionBank()
+	{
+		curQuestion = factory.getQuestion();
+	}
+	
+	public void displayCurQuestion()
+	{
+		curQuestion.display();
+	}
+	
+	public void setCurQuestion(Question q)
 	{
 		curQuestion = q;
 	}
 	
-	void nextQuestion()
+	public Question getCurQuestion()
 	{
-		System.out.println("getting next question");
+		return curQuestion;
+	}
+	
+	public void nextQuestion()
+	{
+		curQuestion = factory.getQuestion();
 	}
 }

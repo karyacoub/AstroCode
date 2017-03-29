@@ -1,39 +1,41 @@
 package level;
 
+import application.MainWindow;
 import asteroids.AsteroidField;
 import questions.QuestionBank;
 
 public class Level
 {
-    //private QuestionBank questionBank;
     private AsteroidField asteroidField;
     private QuestionBank questionBank;
     private int counter;
     private int curLevel;
     
-
-
-    public Level(AsteroidField af, QuestionBank q)
+    public Level()
     {
-        questionBank = q;
-        asteroidField = af;
+        questionBank = new QuestionBank();
+        asteroidField = new AsteroidField();
         this.counter = 0;
         this.curLevel = 1;
     }
 
-
-    public void showCurQuestion()
+    // displays question and asteroids
+    public void displayElements()
     {
-        System.out.println("This is a test question");
+    	asteroidField.display();
+    	questionBank.displayCurQuestion();
     }
     
-     
     public void advanceQuestion()
     {
-      System.out.println("this is a dummy next question");
-     }
+    	MainWindow.getBorderPane().getChildren().remove(3);
+    	questionBank.nextQuestion();
+    }
     
-   
+    public void showCurQuestion()
+    {
+    	System.out.println(questionBank.getCurQuestion().getQuestion());
+    }
     
     public void advanceLevel()
     {

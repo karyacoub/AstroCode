@@ -3,11 +3,12 @@ package application;
 import asteroids.AsteroidField;
 import javafx.scene.Parent;
 import level.Level;
-import level.Spaceship; 
+import level.Spaceship;
+import questions.Question;
+import questions.QuestionBank; 
 
 public class GameLauncher extends Parent
 {
-    private AsteroidField asteroidField = new AsteroidField();
     private Spaceship ship = Spaceship.getInstance();
     private Level curLevel;
 
@@ -19,7 +20,10 @@ public class GameLauncher extends Parent
     public void startGame()
     {
     	System.out.println("get ready");
-    	asteroidField.display();
+    	curLevel = new Level();
+    	curLevel.displayElements();
+    	curLevel.advanceQuestion();
+    	curLevel.displayElements();
     	ship.display();
     }
     
