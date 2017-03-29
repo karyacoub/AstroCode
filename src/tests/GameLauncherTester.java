@@ -10,7 +10,7 @@ public class GameLauncherTester
 {
    public static void main(String args[])
    {
-       Level l = new Level(new AsteroidField(), new QuestionBank());
+       Level l = new Level();
        AsteroidField a = new AsteroidField();
        Spaceship ship = Spaceship.getInstance();
        

@@ -9,7 +9,7 @@ public class Leveltester
     public static void main (String args[])
     {
         
-        Level a = new Level(new AsteroidField(), new QuestionBank());
+        Level a = new Level();
         
         System.out.println("Successfully displayed current question"); a.showCurQuestion();
         

@@ -1,6 +1,7 @@
 package tests;
 
 import questions.*;
+import questiontypes.Level1Question1;
 
 public class QuestionTester
 {
@@ -8,9 +9,7 @@ public class QuestionTester
 	{
 		QuestionBank bank = new QuestionBank();
 		
-		Question q = new Level1Question1();
-		
-		Question curQ = bank.factory.createQuestion(q);
+		Question curQ = bank.factory.getQuestion();
 		
 		System.out.println("Created sample question:");
 		System.out.println(curQ.getQuestion() + " " + curQ.getAnswer());
