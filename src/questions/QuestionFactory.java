@@ -8,16 +8,23 @@ import questiontypes.*;
 
 public class QuestionFactory
 {
-	private String dir = System.getProperty("user.dir") + "\\src\\questiontypes\\";
+	private String windowsDir = System.getProperty("user.dir") + "\\src\\questiontypes\\";
+	private String linuxDir = System.getProperty("user.dir") + "/src/questiontypes/";
 	// stores the names of all question classes in array
-	private String[] questions = new File(dir).list();
+	private String[] questions = new File(windowsDir).list();
 	// find the total number of questions present
-	private int numQuestions = questions.length;
+	private int numQuestions;
 	private int curQuestion = 0;
 	
 	// returns the last unanswered question
 	public Question getQuestion()
 	{
+		if(questions == null) 
+		{ 
+			questions =  new File(linuxDir).list();
+		}
+		numQuestions = questions.length;
+		
 		if(curQuestion < numQuestions) { curQuestion++; } 
 		Question q =  getClassFromFile(curQuestion - 1);
 		return q;
