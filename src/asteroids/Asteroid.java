@@ -56,6 +56,10 @@ public abstract class Asteroid
 		{
 			return new Point((MainWindow.getWidth() / 2), (MainWindow.getHeight() / 2)  - (int)(size));
 		}
+		
+		// reset filled positions
+		filledPositions = 0;
+		
 		//rightmost asteroid
 		return new Point((MainWindow.getWidth() - 100) - (int)(size), (MainWindow.getHeight() / 2)  - (int)(size));
 	}
