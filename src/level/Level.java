@@ -28,7 +28,10 @@ public class Level
     
     public void advanceQuestion()
     {
+    	// remove the question currently on the window
     	MainWindow.getBorderPane().getChildren().remove(3);
+    	
+    	// grab the next question
     	questionBank.nextQuestion();
     }
     
