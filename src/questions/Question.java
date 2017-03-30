@@ -1,6 +1,8 @@
 package questions;
 
 import application.MainWindow;
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -16,10 +18,14 @@ public abstract class Question
 	{
 		Text text = new Text();
 		text.setText(question);
-		text.setX(MainWindow.getWidth() / 2 - 400);
-		text.setY(100);
 		text.setFont(Font.font("Ariel", 35));
-		MainWindow.getBorderPane().setTop(text);
+		
+		// align text to center
+		HBox textAlign = new HBox();
+		textAlign.getChildren().add(text);
+		textAlign.setAlignment(Pos.CENTER);
+		
+		MainWindow.getBorderPane().setTop(textAlign);
 	}
 	
 	public String getQuestion()

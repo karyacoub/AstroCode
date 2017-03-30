@@ -26,13 +26,25 @@ public class Level
     	questionBank.displayCurQuestion();
     }
     
+    // removes asteroids + current question from window
+    public void removeElements()
+    {
+    	MainWindow.getBorderPane().getChildren().remove(3);
+    	MainWindow.getBorderPane().getChildren().remove(2);
+    	MainWindow.getBorderPane().getChildren().remove(1);
+    	MainWindow.getBorderPane().getChildren().remove(0);
+    }
+    
     public void advanceQuestion()
     {
-    	// remove the question currently on the window
-    	MainWindow.getBorderPane().getChildren().remove(3);
+    	// remove the question + asteroids currently on the window
+    	removeElements();
     	
     	// grab the next question
     	questionBank.nextQuestion();
+    	
+    	//create new asteroid field
+    	asteroidField = new AsteroidField();
     }
     
     public void showCurQuestion()
