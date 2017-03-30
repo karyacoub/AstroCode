@@ -1,8 +1,6 @@
 package tests;
 
-import asteroids.AsteroidField;
 import level.Level;
-import questions.QuestionBank;
 
 public class Leveltester
 {

@@ -1,7 +1,6 @@
 package tests;
 
 import questions.*;
-import questiontypes.Level1Question1;
 
 public class QuestionTester
 {

@@ -5,8 +5,6 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
-import questions.Question;
-import questions.QuestionBank;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 

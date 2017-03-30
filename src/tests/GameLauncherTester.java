@@ -1,8 +1,6 @@
 package tests;
 
 import level.Level;
-import level.Spaceship;
-import questions.QuestionBank;
 import application.GameLauncher;
 import asteroids.AsteroidField;
 
@@ -12,7 +10,6 @@ public class GameLauncherTester
    {
        Level l = new Level();
        AsteroidField a = new AsteroidField();
-       Spaceship ship = Spaceship.getInstance();
        
        GameLauncher g = new GameLauncher();
        

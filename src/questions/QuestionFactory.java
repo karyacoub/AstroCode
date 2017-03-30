@@ -1,10 +1,6 @@
 package questions;
 
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-
-import questiontypes.*;
 
 public class QuestionFactory
 {
