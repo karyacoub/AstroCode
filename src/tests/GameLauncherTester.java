@@ -9,7 +9,7 @@ public class GameLauncherTester
    public static void main(String args[])
    {
        Level l = new Level();
-       AsteroidField a = new AsteroidField();
+       //AsteroidField a = new AsteroidField();
        
        GameLauncher g = new GameLauncher();
        

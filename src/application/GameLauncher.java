@@ -1,6 +1,7 @@
 package application;
 
 import javafx.scene.Parent;
+import level.InputProcessor;
 import level.Level;
 import level.Spaceship;
 
@@ -8,6 +9,7 @@ public class GameLauncher extends Parent
 {
     private Spaceship ship = Spaceship.getInstance();
     private Level curLevel;
+    private InputProcessor input;
 
     public GameLauncher()
     {
@@ -17,7 +19,11 @@ public class GameLauncher extends Parent
     public void startGame()
     {
     	System.out.println("get ready");
+    	input = new InputProcessor();
+    	
     	curLevel = new Level();
+    	input.setAnswer(curLevel);
+    	
     	curLevel.displayElements();
     	curLevel.advanceQuestion();
     	curLevel.displayElements();

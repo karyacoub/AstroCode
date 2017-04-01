@@ -5,8 +5,12 @@ import java.util.Random;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import application.MainWindow;
 
@@ -67,6 +71,7 @@ public abstract class Asteroid
 	// display asteroid on main window
 	protected void displayAsteroid()
 	{
+		// display the actual asteroid
 		ImageView iv = new ImageView(sprite);
 		iv.setX(position.getX());
 		iv.setY(position.getY());
@@ -78,6 +83,15 @@ public abstract class Asteroid
 		rt.setByAngle(1080);
 		rt.setCycleCount(Timeline.INDEFINITE);
 		rt.play();
+		
+		// display the possible answer above the asteroid
+		Text answer = new Text();
+		answer.setText(possibleAnswer);
+		answer.setFont(Font.font("Courier New", 25));
+		answer.setX(position.getX() + (answer.getScaleX() / 3));
+		answer.setY(position.getY() - 5);
+		
+		MainWindow.getBorderPane().getChildren().add(answer);
 	}
 	
 	// getters
@@ -88,5 +102,14 @@ public abstract class Asteroid
 	public Image getSprite()
 	{
 		return sprite;
+	}
+	public String getPossibleAnswer()
+	{
+		return possibleAnswer;
+	}
+	public String setPossibleAnswer(String answer)
+	{
+		possibleAnswer = answer;
+		return possibleAnswer;
 	}
 }

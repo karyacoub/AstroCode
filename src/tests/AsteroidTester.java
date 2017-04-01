@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
 public class AsteroidTester extends Application 
 {
 	// apparently javafx stops me from running the program without all this stuff
@@ -32,8 +31,8 @@ public class AsteroidTester extends Application
 	public static void main(String[] args) 
 	{
 		//launch(args);
-		AsteroidField asteroidField = new AsteroidField();
-		asteroidField.printAsteroidInfo();
+		//AsteroidField asteroidField = new AsteroidField();
+		//asteroidField.printAsteroidInfo();
 		System.exit(0);
 	}
 }

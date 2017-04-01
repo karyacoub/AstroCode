@@ -2,6 +2,8 @@ package asteroids;
 
 import java.util.Random;
 
+import questions.QuestionBank;
+
 public class AsteroidField 
 {
 	private final int NUM_TYPES_OF_ASTEROIDS = 3;
@@ -9,9 +11,9 @@ public class AsteroidField
 	private AsteroidFactory factory = new AsteroidFactory();
 	private Asteroid curAsteroids[];
 	
-	public AsteroidField()
+	public AsteroidField(QuestionBank question)
 	{
-		curAsteroids = initCurAsteroids();
+		initCurAsteroids(question);
 	}
 	
 	// display all current asteroids on screen
@@ -23,7 +25,7 @@ public class AsteroidField
 		}
 	}
 	
-	public void printAsteroidInfo() // for debugging //
+	public void printAsteroidInfo() // for debugging
 	{
 		System.out.println("** CURRENT ASTEROID INFO **");
 		
@@ -32,6 +34,7 @@ public class AsteroidField
 			System.out.println("Asteroid " + (i+1) + ":");
 			System.out.println("\t SIZE: " + curAsteroids[i].getSize());
 			System.out.println("\t SPRITE: " + curAsteroids[i].getSprite());
+			System.out.println("\t POSSIBLE ANSWER: " + curAsteroids[i].getPossibleAnswer());
 		}
 	}
 	public Asteroid[] getCurAsteroids()
@@ -39,9 +42,9 @@ public class AsteroidField
 		return curAsteroids;
 	}
 	
-	private Asteroid[] initCurAsteroids()
+	private Asteroid[] initCurAsteroids(QuestionBank question)
 	{
-		Asteroid asteroids[] = new Asteroid[NUM_TYPES_OF_ASTEROIDS];
+		curAsteroids = new Asteroid[NUM_TYPES_OF_ASTEROIDS];
 		
 		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
 		{
@@ -49,23 +52,43 @@ public class AsteroidField
 			
 			if(asteroidChoice == 1) // big asteroid
 			{
-				asteroids[i] = factory.getAsteroid("big");
+				curAsteroids[i] = factory.getAsteroid("big");
 			}
 			else if(asteroidChoice == 2) // medium asteroid
 			{
-				asteroids[i] = factory.getAsteroid("medium");
+				curAsteroids[i] = factory.getAsteroid("medium");
 			}
 			else // small asteroid
 			{
-				asteroids[i] = factory.getAsteroid("small");
+				curAsteroids[i] = factory.getAsteroid("small");
 			}
 		}
 		
-		return asteroids;
+		// set possible answer for each asteroid
+		setPossibleAnswers(question);
+		
+		return curAsteroids;
 	}
 	private int chooseRandomAsteroid()
 	{
 		return randInt(1, NUM_TYPES_OF_ASTEROIDS);
+	}
+	private void setPossibleAnswers(QuestionBank question)
+	{
+		String possibleAnswer1 = question.getCurQuestion().getPossibleAnswer1();
+		String possibleAnswer2 = question.getCurQuestion().getPossibleAnswer2();
+		String possibleAnswer3 = question.getCurQuestion().getPossibleAnswer3();
+		
+		try
+		{
+			curAsteroids[0].setPossibleAnswer(possibleAnswer1);
+			curAsteroids[1].setPossibleAnswer(possibleAnswer2);
+			curAsteroids[2].setPossibleAnswer(possibleAnswer3);
+		} catch(NullPointerException e)
+		{
+			System.out.println("NullPointerException: Asteroids have not been initialized");
+			System.exit(-1);
+		}
 	}
 	private int randInt(int lowerBound, int upperBound)
 	{

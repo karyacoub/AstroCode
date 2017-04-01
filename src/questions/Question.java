@@ -33,6 +33,21 @@ public abstract class Question
 		return question;
 	}
 	
+	public String getPossibleAnswer1()
+	{
+		return possibleAnswer1;
+	}
+	
+	public String getPossibleAnswer2()
+	{
+		return possibleAnswer2;
+	}
+	
+	public String getPossibleAnswer3()
+	{
+		return possibleAnswer3;
+	}
+	
 	public String getAnswer()
 	{
 		return actualAnswer;

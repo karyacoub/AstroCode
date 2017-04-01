@@ -14,9 +14,14 @@ public class Level
     public Level()
     {
         questionBank = new QuestionBank();
-        asteroidField = new AsteroidField();
+        asteroidField = new AsteroidField(questionBank);
         this.counter = 0;
         this.curLevel = 1;
+    }
+    
+    public String getCurAnswer()
+    {
+    	return questionBank.getCurQuestion().getAnswer();
     }
 
     // displays question and asteroids
@@ -29,6 +34,9 @@ public class Level
     // removes asteroids + current question from window
     public void removeElements()
     {
+    	MainWindow.getBorderPane().getChildren().remove(6);
+    	MainWindow.getBorderPane().getChildren().remove(5);
+    	MainWindow.getBorderPane().getChildren().remove(4);
     	MainWindow.getBorderPane().getChildren().remove(3);
     	MainWindow.getBorderPane().getChildren().remove(2);
     	MainWindow.getBorderPane().getChildren().remove(1);
@@ -44,7 +52,7 @@ public class Level
     	questionBank.nextQuestion();
     	
     	//create new asteroid field
-    	asteroidField = new AsteroidField();
+    	asteroidField = new AsteroidField(questionBank);
     }
     
     public void showCurQuestion()
