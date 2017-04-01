@@ -5,30 +5,25 @@ import level.InputProcessor;
 import level.Level;
 import level.Spaceship;
 
-public class GameLauncher extends Parent
+public class GameLauncher extends Parent 
 {
-    private Spaceship ship = Spaceship.getInstance();
-    private Level curLevel;
-    private InputProcessor input;
+    private static Spaceship ship = Spaceship.getInstance();
+    private static Level curLevel = new Level();;
+    private static InputProcessor input;
 
     public GameLauncher()
     {
     	super();
     }
 
-    public void startGame()
-    {
-    	System.out.println("get ready");
-    	
-    	curLevel = new Level();
+    public static void startGame()
+    {	
     	input = new InputProcessor();
     	input.setAnswer(curLevel);
     	
     	ship.flyOnScreen();
     	
     	curLevel.displayElements();
-    	//curLevel.advanceQuestion();
-    	//curLevel.displayElements();
     }
     
     public void gameOver()
@@ -41,6 +36,16 @@ public class GameLauncher extends Parent
     	System.out.println("Game will Restart");
         
         //this function should restart the game by running startGame()
+    }
+    
+    public static Level getLevel()
+    {
+    	return curLevel;
+    }
+    
+    public static Spaceship getShip()
+    {
+    	return ship;
     }
     
     public boolean testConnection()

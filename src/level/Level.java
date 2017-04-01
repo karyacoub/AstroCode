@@ -51,6 +51,12 @@ public class Level
     	// grab the next question
     	questionBank.nextQuestion();
     	
+    	if(questionBank.getCurQuestion() == null)
+    	{
+    		System.out.println("Game over");  //TEMPORARY
+    		System.exit(0);
+    	}
+    	
     	//create new asteroid field
     	asteroidField = new AsteroidField(questionBank);
     }

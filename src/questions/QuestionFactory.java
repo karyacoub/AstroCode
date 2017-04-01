@@ -40,7 +40,7 @@ public class QuestionFactory
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
+			return null;
 		}
 		return (Question)o;
 	}

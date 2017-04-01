@@ -79,16 +79,16 @@ public class Spaceship
     
     public static synchronized Spaceship getInstance()
     {
+    	// add ship to main window
+    	INSTANCE.sprite.setX(OFF_SCREEN_POSITION.getX());
+    	INSTANCE.sprite.setY(OFF_SCREEN_POSITION.getY());
+    	MainWindow.getBorderPane().getChildren().add(INSTANCE.sprite);
+    	
         return INSTANCE; 
     }
     
     public void flyOnScreen()
-    {
-    	// add ship to main window
-    	sprite.setX(OFF_SCREEN_POSITION.getX());
-    	sprite.setY(OFF_SCREEN_POSITION.getY());
-    	MainWindow.getBorderPane().getChildren().add(sprite);
-    	
+    {	
     	// allow ship to fly up from under window
     	Path path = new Path();
     	path.getElements().add(new MoveTo(sprite.getX(), sprite.getY()));

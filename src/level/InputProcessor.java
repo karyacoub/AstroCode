@@ -1,5 +1,6 @@
 package level;
 
+import application.GameLauncher;
 import application.MainWindow;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -32,7 +33,16 @@ public class InputProcessor
     					{
     						setInput();
     						textBox.clear();
-    						System.out.println(input);
+    						
+    						if(isAnswer())
+    						{
+    							GameLauncher.getLevel().advanceQuestion();
+    							GameLauncher.startGame();
+    						}
+    						else
+    						{
+    							
+    						}
     					}
     				}
     			}
@@ -40,16 +50,17 @@ public class InputProcessor
 
     	MainWindow.getBorderPane().setBottom(textBox);
     }
-    
+
     public String setAnswer(Level level)
     {
     	answer = level.getCurAnswer();
     	return answer;
     }
-
+   
     public String setInput()
     {
-        input = textBox.getText();
+        input = textBox.getText().toLowerCase();
+        
         return input;
     }
     
