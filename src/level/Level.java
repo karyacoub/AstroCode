@@ -34,13 +34,13 @@ public class Level
     // removes asteroids + current question from window
     public void removeElements()
     {
+    	MainWindow.getBorderPane().getChildren().remove(8);
+    	MainWindow.getBorderPane().getChildren().remove(7);
     	MainWindow.getBorderPane().getChildren().remove(6);
     	MainWindow.getBorderPane().getChildren().remove(5);
     	MainWindow.getBorderPane().getChildren().remove(4);
     	MainWindow.getBorderPane().getChildren().remove(3);
     	MainWindow.getBorderPane().getChildren().remove(2);
-    	MainWindow.getBorderPane().getChildren().remove(1);
-    	MainWindow.getBorderPane().getChildren().remove(0);
     }
     
     public void advanceQuestion()

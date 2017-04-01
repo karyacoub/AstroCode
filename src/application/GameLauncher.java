@@ -19,15 +19,16 @@ public class GameLauncher extends Parent
     public void startGame()
     {
     	System.out.println("get ready");
-    	input = new InputProcessor();
     	
     	curLevel = new Level();
+    	input = new InputProcessor();
     	input.setAnswer(curLevel);
     	
+    	ship.flyOnScreen();
+    	
     	curLevel.displayElements();
-    	curLevel.advanceQuestion();
-    	curLevel.displayElements();
-    	ship.display();
+    	//curLevel.advanceQuestion();
+    	//curLevel.displayElements();
     }
     
     public void gameOver()

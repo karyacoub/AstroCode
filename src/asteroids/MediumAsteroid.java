@@ -11,5 +11,6 @@ public class MediumAsteroid extends Asteroid
 		size = randInt(MIN_SIZE, MAX_SIZE);
 		sprite = chooseSprite();
 		position = choosePosition();
+		isDestroyed = false;
 	}
 }

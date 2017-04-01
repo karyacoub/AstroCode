@@ -21,12 +21,12 @@ public class Spaceship
     private static final Point ON_SCREEN_POSITION = new Point(MainWindow.getWidth() / 2, MainWindow.getHeight() - 200);
     
     private int hp;
-    private Image sprite;
+    private ImageView sprite;
 
     private Spaceship()
     {
     	hp = 100;
-    	sprite = new Image("file:assets/temp_ship.png", SIZE, SIZE, false, false);
+    	sprite = new ImageView(new Image("file:assets/temp_ship.png", SIZE, SIZE, false, false));
     }
 
     /**
@@ -41,7 +41,7 @@ public class Spaceship
     }
     
     /**
-     * If a correct asnwer isn't given in time the spaceship will crash into the asteroid and decrease it's hp
+     * If a correct answer isn't given in time the spaceship will crash into the asteroid and decrease it's hp
      * 
      * @param  Asteroid 
      * @return     void
@@ -82,24 +82,28 @@ public class Spaceship
         return INSTANCE; 
     }
     
-    public void display()
+    public void flyOnScreen()
     {
     	// add ship to main window
-    	ImageView iv = new ImageView(sprite);
-    	iv.setX(OFF_SCREEN_POSITION.getX());
-    	iv.setY(OFF_SCREEN_POSITION.getY());
-    	MainWindow.getBorderPane().getChildren().add(iv);
+    	sprite.setX(OFF_SCREEN_POSITION.getX());
+    	sprite.setY(OFF_SCREEN_POSITION.getY());
+    	MainWindow.getBorderPane().getChildren().add(sprite);
     	
     	// allow ship to fly up from under window
     	Path path = new Path();
-    	path.getElements().add(new MoveTo(iv.getX(), iv.getY()));
+    	path.getElements().add(new MoveTo(sprite.getX(), sprite.getY()));
     	path.getElements().add(new LineTo(ON_SCREEN_POSITION.getX(), ON_SCREEN_POSITION.getY()));
     	PathTransition pathTransition = new PathTransition();
-    	pathTransition.setNode(iv);
+    	pathTransition.setNode(sprite);
     	pathTransition.setPath(path);
     	pathTransition.setDuration(Duration.millis(ANIMATION_DURATION));
     	
     	pathTransition.play();
+    }
+    
+    public void flyOffScreen()
+    {
+    	
     }
     
 }

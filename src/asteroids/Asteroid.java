@@ -26,6 +26,7 @@ public abstract class Asteroid
 	protected Image sprite;
 	protected Point position;
 	protected String possibleAnswer;
+	protected boolean isDestroyed;
 	
 	protected int randInt(int lowerBound, int upperBound)
 	{
