@@ -4,7 +4,6 @@ import javafx.scene.Parent;
 import level.InputProcessor;
 import level.Level;
 import level.Spaceship;
-import level.QuestionTimer;
 
 public class GameLauncher extends Parent 
 {

@@ -24,7 +24,8 @@ public class MainWindow extends Application
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			GameLauncher.startGame();
+			GameLauncher g = new GameLauncher();
+			g.startGame();
 		}
 		catch(Exception e) 
 		{

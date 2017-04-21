@@ -6,8 +6,11 @@ import questions.QuestionBank;
 
 public class Level
 {
+	private final int SECONDS_PER_QUESTION = 10;
+	
     private AsteroidField asteroidField;
     private QuestionBank questionBank;
+    private QuestionTimer timer;
     private int counter;
     private int curQuestion;
     private int curLevel;
@@ -16,6 +19,7 @@ public class Level
     {
         questionBank = new QuestionBank();
         asteroidField = new AsteroidField(questionBank);
+        timer = new QuestionTimer(SECONDS_PER_QUESTION);
         this.counter = 0;
         this.curLevel = 1;
         this.curQuestion = 1;
@@ -31,6 +35,8 @@ public class Level
     {
     	asteroidField.display();
     	questionBank.displayCurQuestion();
+    	timer.display();
+    	timer.startTimer();
     }
     
     // removes asteroids + current question from window
@@ -43,10 +49,19 @@ public class Level
     	MainWindow.getBorderPane().getChildren().remove(4);
     	MainWindow.getBorderPane().getChildren().remove(3);
     	MainWindow.getBorderPane().getChildren().remove(2);
+    	timer.removeTimer();
     }
     
     public void advanceQuestion()
     {
+    	curQuestion++;
+    	
+    	// if 5 questions successfully completed, advance level
+    	if((curQuestion - 1)%5 == 0)
+    	{
+    		advanceLevel();
+    	}
+    	
     	// remove the question + asteroids currently on the window
     	removeElements();
     	
@@ -56,7 +71,7 @@ public class Level
     	if(questionBank.getCurQuestion() == null)
     	{
     		System.out.println("Game over");  //TEMPORARY
-    		System.exit(0);
+    		//System.exit(0);
     	}
     	
     	//create new asteroid field
