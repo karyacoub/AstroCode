@@ -1,9 +1,12 @@
 package level;
 
+import application.GameLauncher;
 import application.MainWindow;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -12,12 +15,14 @@ public class QuestionTimer
 {
 	private int secondsPerQuestion;
 	private int timeLeft;
+	private boolean timeUp;
 	private Text text;
 	
 	public QuestionTimer(int sec)
 	{
 		secondsPerQuestion = sec;
 		timeLeft = sec;
+		timeUp = false;
 	}
 	
 	public void startTimer()
@@ -30,6 +35,19 @@ public class QuestionTimer
 			}
 		));
 		timer.setCycleCount(secondsPerQuestion);
+		
+		// if time runs out, increment attempt number
+		timer.setOnFinished(new EventHandler<ActionEvent>()
+				{
+					@Override
+					public void handle(ActionEvent e)
+					{
+						
+						
+						GameLauncher.getLevel().advanceQuestion();
+						GameLauncher.startGame();
+					}
+				});
 		timer.play();
 	}
 	
@@ -47,5 +65,10 @@ public class QuestionTimer
 	public void removeTimer()
 	{
 		MainWindow.getBorderPane().getChildren().remove(text);
+	}
+	
+	public boolean isTimeUp()
+	{
+		return timeUp;
 	}
 }

@@ -34,14 +34,22 @@ public class InputProcessor
     						setInput();
     						textBox.clear();
     						
-    						if(isAnswer())
+    						if(isAnswer()) // if answer is correct
     						{
     							GameLauncher.getLevel().advanceQuestion();
     							GameLauncher.startGame();
     						}
-    						else
+    						else // if answer is incorrect
     						{
-    							
+    							if(GameLauncher.getLevel().getCurAttempt() < GameLauncher.getLevel().getMaxAttempts())
+    							{
+    								GameLauncher.getLevel().nextAttempt();
+    							}
+    							else
+    							{
+    								System.out.println("GAME OVER");
+    								System.exit(0);
+    							}
     						}
     					}
     				}

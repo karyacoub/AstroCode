@@ -6,7 +6,8 @@ import questions.QuestionBank;
 
 public class Level
 {
-	private final int SECONDS_PER_QUESTION = 10;
+	private final int SECONDS_PER_QUESTION = 20;
+	private final int MAX_ATTEMPTS = 2;
 	
     private AsteroidField asteroidField;
     private QuestionBank questionBank;
@@ -14,6 +15,7 @@ public class Level
     private int counter;
     private int curQuestion;
     private int curLevel;
+    private int curAttempt;
     
     public Level()
     {
@@ -23,11 +25,27 @@ public class Level
         this.counter = 0;
         this.curLevel = 1;
         this.curQuestion = 1;
+        this.curAttempt = 1;
     }
     
     public String getCurAnswer()
     {
     	return questionBank.getCurQuestion().getAnswer();
+    }
+    
+    public int getCurAttempt()
+    {
+    	return curAttempt;
+    }
+    
+    public void nextAttempt()
+    {
+    	curAttempt++;
+    }
+    
+    public int getMaxAttempts()
+    {
+    	return MAX_ATTEMPTS;
     }
 
     // displays question and asteroids
@@ -70,7 +88,7 @@ public class Level
     	
     	if(questionBank.getCurQuestion() == null)
     	{
-    		System.out.println("Game over");  //TEMPORARY
+    		System.out.println("NO MORE QUESTIONS LEFT");  //TEMPORARY
     		//System.exit(0);
     	}
     	
@@ -89,6 +107,5 @@ public class Level
          System.out.println("Current Level: " + this.curLevel);
          this.counter = 0;
          System.out.println("Current answers correct: " + this.counter);
-     
     }
 }
