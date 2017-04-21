@@ -4,11 +4,12 @@ import javafx.scene.Parent;
 import level.InputProcessor;
 import level.Level;
 import level.Spaceship;
+import level.QuestionTimer;
 
 public class GameLauncher extends Parent 
 {
     private static Spaceship ship = Spaceship.getInstance();
-    private static Level curLevel = new Level();;
+    private static Level curLevel = new Level();
     private static InputProcessor input;
 
     public GameLauncher()
