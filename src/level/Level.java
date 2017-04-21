@@ -9,6 +9,7 @@ public class Level
     private AsteroidField asteroidField;
     private QuestionBank questionBank;
     private int counter;
+    private int curQuestion;
     private int curLevel;
     
     public Level()
@@ -17,6 +18,7 @@ public class Level
         asteroidField = new AsteroidField(questionBank);
         this.counter = 0;
         this.curLevel = 1;
+        this.curQuestion = 1;
     }
     
     public String getCurAnswer()
