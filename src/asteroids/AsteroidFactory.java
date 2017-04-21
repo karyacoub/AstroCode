@@ -1,8 +1,6 @@
 package asteroids;
 
-import questions.QuestionBank;
-
-public class AsteroidFactory 
+public class AsteroidFactory
 {
 	public Asteroid getAsteroid(String asteroidType)
 	{
