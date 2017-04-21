@@ -5,10 +5,8 @@ import java.util.Random;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
