@@ -3,7 +3,6 @@ package level;
 import application.GameLauncher;
 import application.MainWindow;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,39 +14,59 @@ public class QuestionTimer
 {
 	private int secondsPerQuestion;
 	private int timeLeft;
-	private boolean timeUp;
 	private Text text;
+	private Timeline timer;
 	
 	public QuestionTimer(int sec)
 	{
 		secondsPerQuestion = sec;
 		timeLeft = sec;
-		timeUp = false;
+		
+		timer = new Timeline(new KeyFrame(Duration.millis(1000), ev -> 
+		{
+			timeLeft--;
+			removeTimer();
+			display();
+		}
+	));
+	timer.setCycleCount(secondsPerQuestion);
+	
+	// if time runs out, tell the user, and advance to next question
+	timer.setOnFinished(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent e)
+				{
+					// advance question, makes screen blank
+					GameLauncher.getLevel().advanceQuestion();
+					
+					// add text that says "Time's up!" to the screen
+					Text text = new Text();
+					text.setText("Time's up!");
+					text.setFont(Font.font("Ariel", 40));				
+					MainWindow.getBorderPane().setCenter(text);
+					
+					// let it linger for a bit
+					Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
+					t.setCycleCount(1);
+					
+					// when timer is done running, remove text, display next question
+					t.setOnFinished(new EventHandler<ActionEvent>()
+							{
+								@Override
+								public void handle(ActionEvent e)
+								{
+									MainWindow.getBorderPane().getChildren().remove(text);
+									GameLauncher.startGame();
+								}
+							});
+					t.play();
+				}
+			});
 	}
 	
 	public void startTimer()
 	{	
-		Timeline timer = new Timeline(new KeyFrame(Duration.millis(1000), ev -> 
-			{
-				timeLeft--;
-				removeTimer();
-				display();
-			}
-		));
-		timer.setCycleCount(secondsPerQuestion);
-		
-		// if time runs out, increment attempt number
-		timer.setOnFinished(new EventHandler<ActionEvent>()
-				{
-					@Override
-					public void handle(ActionEvent e)
-					{
-						
-						
-						GameLauncher.getLevel().advanceQuestion();
-						GameLauncher.startGame();
-					}
-				});
 		timer.play();
 	}
 	
@@ -67,8 +86,14 @@ public class QuestionTimer
 		MainWindow.getBorderPane().getChildren().remove(text);
 	}
 	
-	public boolean isTimeUp()
+	public void resetTimer()
 	{
-		return timeUp;
+		timeLeft = secondsPerQuestion;
+	}
+	
+	public void stopTimer()
+	{
+		timer.stop();
+		
 	}
 }

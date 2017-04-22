@@ -72,6 +72,9 @@ public class Level
     
     public void advanceQuestion()
     {
+    	timer.stopTimer();
+    	timer.resetTimer();
+    	
     	curQuestion++;
     	
     	// if 5 questions successfully completed, advance level
