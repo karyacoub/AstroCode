@@ -57,7 +57,7 @@ public class Level
     	timer.startTimer();
     }
     
-    // removes asteroids + current question from window
+    // removes asteroids, current question, and timer from window
     public void removeElements()
     {
     	MainWindow.getBorderPane().getChildren().remove(8);
@@ -72,8 +72,12 @@ public class Level
     
     public void advanceQuestion()
     {
+    	// reset timer
     	timer.stopTimer();
     	timer.resetTimer();
+    	
+    	// reset current attempt
+    	curAttempt = 1;
     	
     	curQuestion++;
     	
