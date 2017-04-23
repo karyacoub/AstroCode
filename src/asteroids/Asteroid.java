@@ -21,8 +21,9 @@ public abstract class Asteroid
 	private static int filledPositions = 0;
 	
 	protected double size;
-	protected Image sprite;
+	protected ImageView sprite;
 	protected Point position;
+	protected int positionIndex;
 	protected String possibleAnswer;
 	protected boolean isDestroyed;
 	
@@ -33,19 +34,19 @@ public abstract class Asteroid
 	}
 	
 	// chooses one of the sprites in the assets folder
-	protected Image chooseSprite()
+	protected ImageView chooseSprite()
 	{
 		int rand = randInt(1, NUM_ASTEROIDS_ON_SCREEN);
 		
 		if(rand == 1)
 		{
-			return new Image("file:assets/asteroid_1.png", size, size, false, false);
+			return new ImageView(new Image("file:assets/asteroid_1.png", size, size, false, false));
 		}
 		else if(rand == 2)
 		{
-			return new Image("file:assets/asteroid_2.png", size, size, false, false);
+			return new ImageView(new Image("file:assets/asteroid_2.png", size, size, false, false));
 		}
-		return new Image("file:assets/asteroid_3.png", size, size, false, false);
+		return new ImageView(new Image("file:assets/asteroid_3.png", size, size, false, false));
 	}
 	protected Point choosePosition()
 	{
@@ -53,10 +54,12 @@ public abstract class Asteroid
 		
 		if(filledPositions == 1) // leftmost asteroid
 		{	
+			positionIndex = 1;
 			return new Point(100, (MainWindow.getHeight() / 2) - (int)(size));
 		}
 		else if(filledPositions == 2) // middle asteroid
 		{
+			positionIndex = 2;
 			return new Point((MainWindow.getWidth() / 2), (MainWindow.getHeight() / 2)  - (int)(size));
 		}
 		
@@ -64,6 +67,7 @@ public abstract class Asteroid
 		filledPositions = 0;
 		
 		//rightmost asteroid
+		positionIndex = 3;
 		return new Point((MainWindow.getWidth() - 100) - (int)(size), (MainWindow.getHeight() / 2)  - (int)(size));
 	}
 	
@@ -71,14 +75,13 @@ public abstract class Asteroid
 	protected void displayAsteroid()
 	{
 		// display the actual asteroid
-		ImageView iv = new ImageView(sprite);
-		iv.setX(position.getX());
-		iv.setY(position.getY());
-		MainWindow.getBorderPane().getChildren().add(iv);
+		sprite.setX(position.getX());
+		sprite.setY(position.getY());
+		MainWindow.getBorderPane().getChildren().add(sprite);
 		
 		int duration = randInt(MIN_ROTATION_DURATION, MAX_ROTATION_DURATION);
 		
-		RotateTransition rt = new RotateTransition(Duration.millis(duration), iv);
+		RotateTransition rt = new RotateTransition(Duration.millis(duration), sprite);
 		rt.setByAngle(1080);
 		rt.setCycleCount(Timeline.INDEFINITE);
 		rt.play();
@@ -98,7 +101,7 @@ public abstract class Asteroid
 	{
 		return size;
 	}
-	public Image getSprite()
+	public ImageView getSprite()
 	{
 		return sprite;
 	}
@@ -110,5 +113,13 @@ public abstract class Asteroid
 	{
 		possibleAnswer = answer;
 		return possibleAnswer;
+	}
+	public Point getPosition()
+	{
+		return position;
+	}
+	public int getPositionIndex()
+	{
+		return positionIndex;
 	}
 }

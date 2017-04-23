@@ -47,6 +47,16 @@ public class Level
     {
     	return MAX_ATTEMPTS;
     }
+    
+    public AsteroidField getAsteroidField()
+    {
+    	return asteroidField;
+    }
+    
+    public QuestionTimer getQuestionTimer()
+    {
+    	return timer;
+    }
 
     // displays question and asteroids
     public void displayElements()

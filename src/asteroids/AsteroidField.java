@@ -37,6 +37,23 @@ public class AsteroidField
 			System.out.println("\t POSSIBLE ANSWER: " + curAsteroids[i].getPossibleAnswer());
 		}
 	}
+	
+	// returns asteroid containing the correct answer
+	public Asteroid getAsteroidWithAnswer(String answer)
+	{
+		Asteroid a = null;
+		
+		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
+		{
+			if(curAsteroids[i].getPossibleAnswer().equals(answer))
+			{
+				a = curAsteroids[i];
+			}
+		}
+		
+		return a;
+	}
+	
 	public Asteroid[] getCurAsteroids()
 	{
 		return curAsteroids;

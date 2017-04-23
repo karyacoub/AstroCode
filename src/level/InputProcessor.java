@@ -2,6 +2,7 @@ package level;
 
 import application.GameLauncher;
 import application.MainWindow;
+import asteroids.Asteroid;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -18,10 +19,8 @@ public class InputProcessor
     private TextField textBox;
     private String input;
     private String answer;
+    private Asteroid asteroidWithAnswer;
 
-    /**
-     * Constructor for objects of class inputProcessor
-     */
     public InputProcessor()
     {
     	textBox = new TextField();
@@ -39,14 +38,20 @@ public class InputProcessor
     						setInput();
     						textBox.clear();
     						
-    						if(isAnswer()) // if answer is correct
+    						// if answer is correct
+    						if(isAnswer())
     						{
-    							GameLauncher.getLevel().advanceQuestion();
-    							GameLauncher.startGame();
+    							// stop the timer
+    							GameLauncher.getLevel().getQuestionTimer().stopTimer();
+    							
+    							// ship shoots the asteroid, advances to next question
+    							GameLauncher.getShip().shoot(asteroidWithAnswer);
     						}
-    						else // if answer is incorrect
+    						
+    						// if answer is incorrect
+    						else
     						{
-    							// if there is still some attempts left, display number of attempts left and play appropriate animation
+    							// if there are still some attempts left, display number of attempts left and play appropriate animation
     							if(GameLauncher.getLevel().getCurAttempt() < GameLauncher.getLevel().getMaxAttempts())
     							{
     								GameLauncher.getLevel().nextAttempt();
@@ -70,13 +75,13 @@ public class InputProcessor
     public String setAnswer(Level level)
     {
     	answer = level.getCurAnswer();
+    	asteroidWithAnswer = GameLauncher.getLevel().getAsteroidField().getAsteroidWithAnswer(answer);
     	return answer;
     }
    
     public String setInput()
     {
         input = textBox.getText().toLowerCase();
-        
         return input;
     }
     
