@@ -16,65 +16,22 @@ public class Spaceship
 {
     private static final Spaceship INSTANCE = new Spaceship();
     private static final double SIZE = 80;
-    private static final int ANIMATION_DURATION = 1000;
+    private static final int FLY_UP_ANIMATION_DURATION = 1000;
+    private static final int SHAKE_ANIMATION_DURATION = 80;
     private static final Point OFF_SCREEN_POSITION = new Point(MainWindow.getWidth() / 2, MainWindow.getHeight() + 200);
     private static final Point ON_SCREEN_POSITION = new Point(MainWindow.getWidth() / 2, MainWindow.getHeight() - 200);
     
-    private int hp;
     private ImageView sprite;
 
     private Spaceship()
     {
-    	hp = 100;
     	sprite = new ImageView(new Image("file:assets/temp_ship.png", SIZE, SIZE, false, false));
     }
 
-    /**
-     * Destroys Asteroid called when correct answer is given.
-     * 
-     * @param  Asteroid 
-     * @return     void
-     */
+    // Destroys Asteroid called when correct answer is given.
     public void shoot(Asteroid a)
     {
-      
-    }
-    
-    /**
-     * If a correct answer isn't given in time the spaceship will crash into the asteroid and decrease it's hp
-     * 
-     * @param  Asteroid 
-     * @return     void
-     */
-    public void crash (Asteroid a)
-    {
-        decreaseHp();
-        System.out.println("Ships hull has been breached");
-    }
-    /**
-     * decreases the hp of the ship - for now by 25 later will be based on other factors (size of asteroid etc.)
-     * 
-     * @param  none
-     * @return     void
-     */
-    public void decreaseHp()
-    {
-	      hp = hp - 25;
-	      System.out.println("Damage taken");
-    }
-    /**
-     * increases the hp of the ship - for now by 25 later will be based on other factors(power ups etc.)
-     * 
-     * @param  none 
-     * @return     void
-     */
-    public void replenishHp()
-    {
-    	hp = hp + 25;
-    }
-    public int checkHp()
-    {
-        return hp;
+    	
     }
     
     public static synchronized Spaceship getInstance()
@@ -87,6 +44,7 @@ public class Spaceship
         return INSTANCE; 
     }
     
+    // animation for spaceship to fly on screen from the bottom
     public void flyOnScreen()
     {	
     	// allow ship to fly up from under window
@@ -96,11 +54,29 @@ public class Spaceship
     	PathTransition pathTransition = new PathTransition();
     	pathTransition.setNode(sprite);
     	pathTransition.setPath(path);
-    	pathTransition.setDuration(Duration.millis(ANIMATION_DURATION));
+    	pathTransition.setDuration(Duration.millis(FLY_UP_ANIMATION_DURATION));
     	
     	pathTransition.play();
     }
     
+    // animation plays when incorrect answer is given
+    public void shake()
+    {
+    	Path path = new Path();
+    	path.getElements().add(new MoveTo(ON_SCREEN_POSITION.getX(), ON_SCREEN_POSITION.getY()));
+    	path.getElements().add(new LineTo(ON_SCREEN_POSITION.getX() + 10, ON_SCREEN_POSITION.getY()));
+    	//path.getElements().add(new LineTo(sprite.getX() - 10, sprite.getY()));
+    	PathTransition pt = new PathTransition();
+    	pt.setNode(sprite);
+    	pt.setPath(path);
+    	pt.setCycleCount(6);
+    	pt.setAutoReverse(true);
+    	pt.setDuration(Duration.millis(SHAKE_ANIMATION_DURATION));
+    	
+    	pt.play();
+    }
+    
+    // animation for spaceship to fly offscreen when correct answer is given
     public void flyOffScreen()
     {
     	

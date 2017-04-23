@@ -46,63 +46,17 @@ public class InputProcessor
     						}
     						else // if answer is incorrect
     						{
-    							// if there is still some attempts left, display number of attempts left
+    							// if there is still some attempts left, display number of attempts left and play appropriate animation
     							if(GameLauncher.getLevel().getCurAttempt() < GameLauncher.getLevel().getMaxAttempts())
     							{
     								GameLauncher.getLevel().nextAttempt();
-    								
-    								int attemptsLeft = 1 + GameLauncher.getLevel().getMaxAttempts() - GameLauncher.getLevel().getCurAttempt();
-    								
-    								// display number of attempts on screen
-    								Text text = new Text();
-    								text.setText("Attempts left: " + attemptsLeft);
-    								text.setFont(Font.font("Ariel", 25));	
-    								text.setX(MainWindow.getWidth() - 210);
-    								text.setY(MainWindow.getHeight() - 210);
-    								MainWindow.getBorderPane().getChildren().add(text);
-    								
-    								// let it linger for a bit
-    								Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
-    								t.setCycleCount(1);
-    								
-    								// when timer is done running, remove text, display next question
-    								t.setOnFinished(new EventHandler<ActionEvent>()
-    										{
-    											@Override
-    											public void handle(ActionEvent e)
-    											{
-    												MainWindow.getBorderPane().getChildren().remove(text);
-    											}
-    										});
-    								t.play();
+    								GameLauncher.getShip().shake();
+    								displayNumAttempts();
     							}
     							// if user runs out of attempts, show incorrect answer prompt, advance question
     							else
     							{
-    								// advance question, makes screen blank
-    								GameLauncher.getLevel().advanceQuestion();
-    								
-    								// add text that says "Sorry, you're out of attempts!" to the screen
-    								Text text = new Text();
-    								text.setText("Sorry, you're out of attempts!");
-    								text.setFont(Font.font("Ariel", 40));	
-    								MainWindow.getBorderPane().setCenter(text);
-    								
-    								// let it linger for a bit
-    								Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
-    								t.setCycleCount(1);
-    								
-    								// when timer is done running, remove text, display next question
-    								t.setOnFinished(new EventHandler<ActionEvent>()
-    										{
-    											@Override
-    											public void handle(ActionEvent e)
-    											{
-    												MainWindow.getBorderPane().getChildren().remove(text);
-    												GameLauncher.startGame();
-    											}
-    										});
-    								t.play();
+    								displayOutOfAttempts();
     							}
     						}
     					}
@@ -134,5 +88,61 @@ public class InputProcessor
     public boolean isAnswer()
     {
         return input.equals(answer);
+    }
+    
+    private void displayNumAttempts()
+    {
+    	int attemptsLeft = 1 + GameLauncher.getLevel().getMaxAttempts() - GameLauncher.getLevel().getCurAttempt();
+		
+		// display number of attempts on screen
+		Text text = new Text();
+		text.setText("Attempts left: " + attemptsLeft);
+		text.setFont(Font.font("Ariel", 25));	
+		text.setX(MainWindow.getWidth() - 210);
+		text.setY(MainWindow.getHeight() - 210);
+		MainWindow.getBorderPane().getChildren().add(text);
+		
+		// let it linger for a bit
+		Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
+		t.setCycleCount(1);
+		
+		// when timer is done running, remove text, display next question
+		t.setOnFinished(new EventHandler<ActionEvent>()
+				{
+					@Override
+					public void handle(ActionEvent e)
+					{
+						MainWindow.getBorderPane().getChildren().remove(text);
+					}
+				});
+		t.play();
+    }
+    
+    private void displayOutOfAttempts()
+    {
+    	// advance question, makes screen blank
+		GameLauncher.getLevel().advanceQuestion();
+		
+		// add text that says "Sorry, you're out of attempts!" to the screen
+		Text text = new Text();
+		text.setText("Sorry, you're out of attempts!");
+		text.setFont(Font.font("Ariel", 40));	
+		MainWindow.getBorderPane().setCenter(text);
+		
+		// let it linger for a bit
+		Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
+		t.setCycleCount(1);
+		
+		// when timer is done running, remove text, display next question
+		t.setOnFinished(new EventHandler<ActionEvent>()
+				{
+					@Override
+					public void handle(ActionEvent e)
+					{
+						MainWindow.getBorderPane().getChildren().remove(text);
+						GameLauncher.startGame();
+					}
+				});
+		t.play();
     }
 }
