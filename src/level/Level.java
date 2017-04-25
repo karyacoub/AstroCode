@@ -30,7 +30,7 @@ public class Level
     
     public String getCurAnswer()
     {
-    	return questionBank.getCurQuestion().getAnswer();
+    	return questionBank.getCurQuestion().getAnswer().toLowerCase();
     }
     
     public int getCurAttempt()

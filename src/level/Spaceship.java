@@ -44,7 +44,7 @@ public class Spaceship
     	// shoot asteroid
     	Path path = new Path();
     	path.getElements().add(new MoveTo(ON_SCREEN_POSITION.getX(), ON_SCREEN_POSITION.getY() - SIZE + 35));
-    	path.getElements().add(new LineTo(a.getPosition().getX() * 2, a.getPosition().getY()));
+    	path.getElements().add(new LineTo(a.getPosition().getX(), a.getPosition().getY()));
     	PathTransition pt = new PathTransition();
     	pt.setNode(bullet);
     	pt.setPath(path);
@@ -59,7 +59,7 @@ public class Spaceship
     					MainWindow.getBorderPane().getChildren().remove(bullet);
     					FadeTransition ft = new FadeTransition();
     			    	ft.setNode(a.getSprite());
-    			    	ft.setCycleCount(7);
+    			    	ft.setCycleCount(5);
     			    	ft.setFromValue(1.0);
     			    	ft.setToValue(0.1);
     			    	ft.setAutoReverse(true);

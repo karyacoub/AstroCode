@@ -92,6 +92,8 @@ public class InputProcessor
     
     public boolean isAnswer()
     {
+    	System.out.println("INPUT: " + input);
+    	System.out.println("ANSWER: " + answer);
         return input.equals(answer);
     }
     

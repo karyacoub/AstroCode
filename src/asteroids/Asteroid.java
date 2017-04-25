@@ -107,7 +107,7 @@ public abstract class Asteroid
 	}
 	public String getPossibleAnswer()
 	{
-		return possibleAnswer;
+		return possibleAnswer.toLowerCase();
 	}
 	public String setPossibleAnswer(String answer)
 	{
