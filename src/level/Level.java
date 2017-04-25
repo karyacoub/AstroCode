@@ -86,19 +86,7 @@ public class Level
     	return timer;
     }
     
-
-    // displays question and asteroids
-    public void displayElements()
-    {
-    	this.display_Lives(curLives);
-    	asteroidField.display();
-    	questionBank.displayCurQuestion();
-    	
-    	timer.display();
-    	timer.startTimer();
-    }
-    
-    public void display_Lives(int curLives)
+    public void display_Lives(int curLives, int curAttempts)
     {
     	if(curLives == 3){
     		first_life.setX(FIRST_LIVES_POSITION.getX());
@@ -115,7 +103,8 @@ public class Level
         	MainWindow.getBorderPane().getChildren().add(third_life);
 
     	}
-    	else if(curLives == 2){
+    	else if(curLives == 2 ){
+    		if(curAttempt == 2){
     		MainWindow.getBorderPane().getChildren().remove(third_life);
     		third_life = one_death;
     		third_life.setX(THIRD_LIVES_POSITION.getX());
@@ -133,11 +122,16 @@ public class Level
     						third_life = new ImageView(new Image ("file:assets/temp_ship_one_life copy.png", 30, 30, false, false));
     					}
     				});
-    		t.play();
+    		t.play();}
+    		else
+    		{
+    			MainWindow.getBorderPane().getChildren().remove(third_life);
+    		}
         	
     	}
     	else if(curLives == 1)
     	{
+    		if(curAttempts == 2){
     		MainWindow.getBorderPane().getChildren().remove(second_life);
     		second_life = one_death;
     		second_life.setX(SECOND_LIVES_POSITION.getX());
@@ -156,12 +150,73 @@ public class Level
     					}
     				});
     		t.play();
+    		}
+    		else
+    		{
+				MainWindow.getBorderPane().getChildren().remove(second_life);
+
+    		}
     	}
-    	
+    	else{
+    		GameLauncher.getLevel().removeElements();
+    		MainWindow.getBorderPane().getChildren().remove(timer);
+    		MainWindow.getBorderPane().getChildren().remove(first_life);
+    		first_life = one_death;
+    		first_life.setX(FIRST_LIVES_POSITION.getX());
+        	first_life.setY(FIRST_LIVES_POSITION.getY());
+        	MainWindow.getBorderPane().getChildren().add(first_life);
+        	Timeline t = new Timeline(new KeyFrame(Duration.millis(2500), ev -> {}));
+    		t.setCycleCount(1);
     		
+    		t.setOnFinished(new EventHandler<ActionEvent>()
+    				{
+    					@Override
+    					public void handle(ActionEvent e)
+    					{
+    						MainWindow.getBorderPane().getChildren().remove(first_life);
+    						first_life = new ImageView(new Image ("file:assets/temp_ship_one_life copy.png", 30, 30, false, false));
+    					}
+    				});
+    		t.play();    		    	
+    		
+    		// add text that says "You win!!" to the screen
+    		Text text = new Text();
+    		text.setText("Game over!");
+    		text.setFont(Font.font("Ariel", 40));	
+    		MainWindow.getBorderPane().setCenter(text);
+    		
+    		// let it linger for a bit
+    		Timeline t2 = new Timeline(new KeyFrame(Duration.millis(5000), ev -> {}));
+    		t2.setCycleCount(1);
+    		
+    		// when timer is done running, remove text, display next question
+    		t2.setOnFinished(new EventHandler<ActionEvent>()
+    				{
+    					@Override
+    					public void handle(ActionEvent e)
+    					{
+    						System.exit(0);
+    					}
+    				});
+    		t2.play();
+    	}
+    }
+
+    // displays question and asteroids
+    public void displayElements()
+    {
+
+    	this.display_Lives(curLives, curAttempt);
+    	asteroidField.display();
+    	questionBank.displayCurQuestion();
+    	
+    	timer.display();
+    	timer.startTimer();
+    	
     }
     
     
+
     // removes asteroids, current question, and timer from window
     public void removeElements()
     {

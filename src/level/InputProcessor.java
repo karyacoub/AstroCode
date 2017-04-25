@@ -56,9 +56,9 @@ public class InputProcessor
     							{
     								GameLauncher.getLevel().nextAttempt();
     								GameLauncher.getLevel().lose_Life();
-    								GameLauncher.getLevel().display_Lives(GameLauncher.getLevel().getCurLives());
+    								GameLauncher.getLevel().display_Lives(GameLauncher.getLevel().getCurLives(), GameLauncher.getLevel().getCurAttempt());
     								GameLauncher.getShip().shake();
-    								displayNumAttempts();
+    								displayNumAttempts(GameLauncher.getLevel().getCurLives());
     							}
     							// if user runs out of attempts, show incorrect answer prompt, advance question
     							else
@@ -97,8 +97,13 @@ public class InputProcessor
         return input.equals(answer);
     }
     
-    private void displayNumAttempts()
+    private void displayNumAttempts(int curLives)
     {
+    	if(curLives == 0)
+    	{
+    		
+    	}
+    	else{
     	int attemptsLeft = 1 + GameLauncher.getLevel().getMaxAttempts() - GameLauncher.getLevel().getCurAttempt();
 		
 		// display number of attempts on screen
@@ -123,6 +128,7 @@ public class InputProcessor
 					}
 				});
 		t.play();
+    	}
     }
     
     private void displayOutOfAttempts()
