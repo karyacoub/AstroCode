@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 public class MainWindow extends Application 
 {
 	private static final int WINDOW_WIDTH = 1000;
-	private static final int WINDOW_HEIGHT = 1000;
+	private static final int WINDOW_HEIGHT = 720;
 	private static final BorderPane root = new BorderPane();
 	
 	@Override

@@ -55,6 +55,8 @@ public class InputProcessor
     							if(GameLauncher.getLevel().getCurAttempt() < GameLauncher.getLevel().getMaxAttempts())
     							{
     								GameLauncher.getLevel().nextAttempt();
+    								GameLauncher.getLevel().lose_Life();
+    								GameLauncher.getLevel().display_Lives(GameLauncher.getLevel().getCurLives());
     								GameLauncher.getShip().shake();
     								displayNumAttempts();
     							}
