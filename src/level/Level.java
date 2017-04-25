@@ -158,8 +158,6 @@ public class Level
     		}
     	}
     	else{
-    		GameLauncher.getLevel().removeElements();
-    		MainWindow.getBorderPane().getChildren().remove(timer);
     		MainWindow.getBorderPane().getChildren().remove(first_life);
     		first_life = one_death;
     		first_life.setX(FIRST_LIVES_POSITION.getX());
@@ -179,18 +177,16 @@ public class Level
     				});
     		t.play();    		    	
     		
-    		// add text that says "You win!!" to the screen
+    		
     		Text text = new Text();
     		text.setText("Game over!");
     		text.setFont(Font.font("Ariel", 40));	
     		MainWindow.getBorderPane().setCenter(text);
     		
-    		// let it linger for a bit
-    		Timeline t2 = new Timeline(new KeyFrame(Duration.millis(5000), ev -> {}));
-    		t2.setCycleCount(1);
+    		t = new Timeline(new KeyFrame(Duration.millis(5000), ev -> {}));
+    		t.setCycleCount(1);
     		
-    		// when timer is done running, remove text, display next question
-    		t2.setOnFinished(new EventHandler<ActionEvent>()
+    		t.setOnFinished(new EventHandler<ActionEvent>()
     				{
     					@Override
     					public void handle(ActionEvent e)
@@ -198,7 +194,7 @@ public class Level
     						System.exit(0);
     					}
     				});
-    		t2.play();
+    		t.play();
     	}
     }
 
@@ -206,13 +202,13 @@ public class Level
     public void displayElements()
     {
 
-    	this.display_Lives(curLives, curAttempt);
+    	
     	asteroidField.display();
     	questionBank.displayCurQuestion();
     	
     	timer.display();
     	timer.startTimer();
-    	
+    	this.display_Lives(curLives, curAttempt);
     }
     
     
@@ -304,31 +300,7 @@ public class Level
 		if(this.curLives > 0)
 		this.curLives--;
 		else{
-		// display game over screen
-		// advance question, makes screen blank
-		GameLauncher.getLevel().removeElements();
-		
-		// add text that says "You win!!" to the screen
-		Text text = new Text();
-		text.setText("Game over!");
-		text.setFont(Font.font("Ariel", 40));	
-		MainWindow.getBorderPane().setCenter(text);
-		
-		// let it linger for a bit
-		Timeline t = new Timeline(new KeyFrame(Duration.millis(5000), ev -> {}));
-		t.setCycleCount(1);
-		
-		// when timer is done running, remove text, display next question
-		t.setOnFinished(new EventHandler<ActionEvent>()
-				{
-					@Override
-					public void handle(ActionEvent e)
-					{
-						System.exit(0);
-					}
-				});
-		t.play();
-	}
+			}
 	}
 
 	
