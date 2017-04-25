@@ -6,10 +6,10 @@ public class Level2Question1 extends Question
 {
 	public Level2Question1()
 	{
-		question = "____ has a garbage collector already implemented";
-		actualAnswer = "java";
-		possibleAnswer1 = "C++";
-		possibleAnswer2 = "C";
-		possibleAnswer3 = "Java";
+		question = "A computer can have two types of graphics cards: dedicated or";
+		actualAnswer = "integrated";
+		possibleAnswer1 = "integral";
+		possibleAnswer2 = "integrated";
+		possibleAnswer3 = "interspersed";
 	}
 }
