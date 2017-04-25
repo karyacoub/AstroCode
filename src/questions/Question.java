@@ -13,10 +13,11 @@ public abstract class Question
 	protected String possibleAnswer2;
 	protected String possibleAnswer3;
 	protected String actualAnswer;
+	private Text text;
 	
 	public void display()
 	{
-		Text text = new Text();
+		text = new Text();
 		text.setText(question);
 		text.setFont(Font.font("Ariel", 35));
 		
@@ -26,6 +27,11 @@ public abstract class Question
 		textAlign.setAlignment(Pos.CENTER);
 		
 		MainWindow.getBorderPane().setTop(textAlign);
+	}
+	
+	public void removeText()
+	{
+		MainWindow.getBorderPane().getChildren().remove(text);
 	}
 	
 	public String getQuestion()

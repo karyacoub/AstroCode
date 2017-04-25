@@ -2,6 +2,7 @@ package asteroids;
 
 import java.util.Random;
 
+import application.MainWindow;
 import questions.QuestionBank;
 
 public class AsteroidField 
@@ -52,6 +53,15 @@ public class AsteroidField
 		}
 		
 		return a;
+	}
+	
+	public void removeAsteroids()
+	{
+		for(int i = 0; i < NUM_TYPES_OF_ASTEROIDS; i++)
+		{
+			MainWindow.getBorderPane().getChildren().remove(curAsteroids[i].getSprite());
+			curAsteroids[i].removeText();
+		}
 	}
 	
 	public Asteroid[] getCurAsteroids()

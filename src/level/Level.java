@@ -1,7 +1,15 @@
 package level;
 
+import application.GameLauncher;
 import application.MainWindow;
 import asteroids.AsteroidField;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import questions.QuestionBank;
 
 public class Level
@@ -70,14 +78,16 @@ public class Level
     // removes asteroids, current question, and timer from window
     public void removeElements()
     {
-    	MainWindow.getBorderPane().getChildren().remove(8);
-    	MainWindow.getBorderPane().getChildren().remove(7);
-    	MainWindow.getBorderPane().getChildren().remove(6);
-    	MainWindow.getBorderPane().getChildren().remove(5);
-    	MainWindow.getBorderPane().getChildren().remove(4);
-    	MainWindow.getBorderPane().getChildren().remove(3);
-    	MainWindow.getBorderPane().getChildren().remove(2);
-    	timer.removeTimer();
+    	try
+    	{
+	    	asteroidField.removeAsteroids();
+	    	questionBank.getCurQuestion().removeText();
+	    	timer.removeTimer();
+    	}
+    	catch(Exception e)
+    	{
+    		return;
+    	}
     }
     
     public void advanceQuestion()
@@ -104,10 +114,32 @@ public class Level
     	questionBank.nextQuestion();
     	
     	if(questionBank.getCurQuestion() == null)
-    	{
-    		System.out.println("NO MORE QUESTIONS LEFT");  //TEMPORARY
-    		//System.exit(0);
-    	}
+    	{    		
+    		// display game over screen
+    		// advance question, makes screen blank
+    		GameLauncher.getLevel().removeElements();
+    		
+    		// add text that says "You win!!" to the screen
+    		Text text = new Text();
+    		text.setText("Game over!");
+    		text.setFont(Font.font("Ariel", 40));	
+    		MainWindow.getBorderPane().setCenter(text);
+    		
+    		// let it linger for a bit
+    		Timeline t = new Timeline(new KeyFrame(Duration.millis(5000), ev -> {}));
+    		t.setCycleCount(1);
+    		
+    		// when timer is done running, remove text, display next question
+    		t.setOnFinished(new EventHandler<ActionEvent>()
+    				{
+    					@Override
+    					public void handle(ActionEvent e)
+    					{
+    						System.exit(0);
+    					}
+    				});
+    		t.play();
+        }
     	
     	//create new asteroid field
     	asteroidField = new AsteroidField(questionBank);

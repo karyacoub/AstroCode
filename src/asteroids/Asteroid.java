@@ -26,6 +26,7 @@ public abstract class Asteroid
 	protected int positionIndex;
 	protected String possibleAnswer;
 	protected boolean isDestroyed;
+	private Text answer;
 	
 	protected int randInt(int lowerBound, int upperBound)
 	{
@@ -87,13 +88,18 @@ public abstract class Asteroid
 		rt.play();
 		
 		// display the possible answer above the asteroid
-		Text answer = new Text();
+		answer = new Text();
 		answer.setText(possibleAnswer);
 		answer.setFont(Font.font("Courier New", 25));
 		answer.setX(position.getX() + (answer.getScaleX() / 3));
 		answer.setY(position.getY() - 5);
 		
 		MainWindow.getBorderPane().getChildren().add(answer);
+	}
+	
+	protected void removeText()
+	{
+		MainWindow.getBorderPane().getChildren().remove(answer);
 	}
 	
 	// getters
