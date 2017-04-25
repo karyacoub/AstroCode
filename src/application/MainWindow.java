@@ -20,6 +20,7 @@ public class MainWindow extends Application
 	{
 		try 
 		{
+			primaryStage.setTitle("AstroCode");
 			Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 			primaryStage.setScene(scene);
 			primaryStage.show();
